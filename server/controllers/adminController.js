@@ -19,7 +19,29 @@ const productSave=async(req, res)=>{
     res.status(200).send("Product Succesfully Uploaded!");
 }
 
+const productDisplay=async(req, res)=>{
+    try {
+         const Data= await ProductModel.find();
+         res.status(200).send(Data);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
+const productMakePrimary=async(req, res)=>{
+    const {id} = req.body;
+    const Data= await ProductModel.findByIdAndUpdate(id, {status:"primary"} );
+    res.status(201).send({msg:"Product Status Succesfully Changed!"});
+}
+
+const productMakeNormal=async(req, res)=>{
+    const {id} = req.body;
+    const Data= await ProductModel.findByIdAndUpdate(id, {status:"normal"} );
+    res.status(201).send({msg:"Product Status Succesfully Changed!"});
+}
 module.exports={
-    productSave
+    productSave,
+    productDisplay,
+    productMakePrimary,
+    productMakeNormal
 }

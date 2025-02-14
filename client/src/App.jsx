@@ -9,6 +9,7 @@ import UserLogin from "./auth/UserLogin";
 import UserSIgnUp from "./auth/UserSIgnUp";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductInsert from "./pages/ProductInsert";
+import UpdateProduct from "./pages/UpdateProducts";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           </Route>
           <Route path="admin" element={<AdminDashboard />} >
             <Route path="insert" element={<ProductInsert/>} />
+            <Route path="updateproducts" element={<UpdateProduct/>}/>
            </Route>
         </Routes>
       </BrowserRouter>
