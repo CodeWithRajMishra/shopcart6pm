@@ -26,7 +26,7 @@ const ans=mydata.map((key)=>{
            <td> 
            <img src={`${BASE_URL}/${key.defaultImage}`} style={{ width: 50, height: 50 }} alt="Uploaded File" />
            </td>   <td> 
-            {key.defaultImage}
+          
             {key.name} </td>
             <td> {key.brand} </td>
             <td> {key.price} </td>
@@ -89,11 +89,11 @@ const handleNormal = async(id)=>{
         <tr>
           <th>#</th>
           <th>Product Name</th>
-          <th>Brand Name</th>
+          <th>Brand</th>
           <th>Price</th>
-          <th>Description#</th>
+          <th>Description</th>
           <th>Category</th>
-          <th>Sub Category</th>
+          <th>Sub Cat</th>
           <th>Status</th>
           <th>Rating</th>
           <th> </th>
