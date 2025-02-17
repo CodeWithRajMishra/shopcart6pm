@@ -10,7 +10,7 @@ import UserSIgnUp from "./auth/UserSIgnUp";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductInsert from "./pages/ProductInsert";
 import UpdateProduct from "./pages/UpdateProducts";
-
+import CheckOut from "./pages/CheckOut";
 const App = () => {
   return (
     <>
@@ -20,13 +20,13 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
-
             <Route path="about" element={<About />} />
             <Route path="product" element={<Product />} />
             <Route path="wishlist" element={<WishList />} />
             <Route path="cart" element={<Cart />} />
             <Route path="userlogin" element={<UserLogin />} />
             <Route path="usersignup" element={<UserSIgnUp />} />
+            <Route path="checkout" element={<CheckOut/>} />
           </Route>
           <Route path="admin" element={<AdminDashboard />} >
             <Route path="insert" element={<ProductInsert/>} />
@@ -37,5 +37,4 @@ const App = () => {
     </>
   );
 };
-
 export default App;

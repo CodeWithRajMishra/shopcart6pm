@@ -27,8 +27,6 @@ useEffect(()=>{
     loadData();
 }, [])
 
-
-
 const ans=mydata.map((key)=>{
             return(
                 <>
