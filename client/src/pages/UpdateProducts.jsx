@@ -8,8 +8,11 @@ const UpdateProduct=()=>{
 
     const [mydata, setMydata]= useState([]);
 
-   const loadData=async()=>{
-    const api=`${BASE_URL}/admin/productdisplay`;
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const limit = 5; // Change as needed
+   const loadData=async(pageNumber)=>{
+    const api=`${BASE_URL}/admin/productdisplay?page=${pageNumber}&limit=${limit}`;
     try {
          const response= await axios.get(api);
          console.log(response.data);
@@ -33,30 +36,22 @@ const ans=mydata.map((key)=>{
             <td> {key.description} </td>
             <td> {key.category} </td>
             <td> {key.subcategory} </td>
-            
             <td> {key.status} </td>
             <td> {key.ratings} </td>
             <td>
                 {key.status=="normal"? (<>
                     <Button variant="warning" size="sm" onClick={(e)=>{handlePrimary(e, key._id)}}>Primary</Button>
-      
                  </>) : (<>
-                 
                     <Button variant="success" size="sm" onClick={(e)=>{handleNormal(key._id)}}>Noraml</Button>
-           
-                  </>)}
-             
+                  </>)}           
             </td>
          </tr>
         </>
      )
 })
-
 useEffect(()=>{
     loadData();
 }, []);
-
-
 const handlePrimary=async(e, id)=>{
     e.preventDefault();
     const api=`${BASE_URL}/admin/productmakeprimary`;
@@ -103,6 +98,12 @@ const handleNormal = async(id)=>{
        {ans}
       </tbody>
       </Table>
+      {/* Pagination Controls */}
+      <div>
+                <button disabled={page === 1} onClick={() => setPage(page - 1)}>Prev</button>
+                <span> Page {page} of {totalPages} </span>
+                <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</button>
+            </div>
         </>
     )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import "../css/TopMenu.css";
@@ -6,10 +6,20 @@ import { Navbar, Nav, Container, Form, FormControl, InputGroup, Dropdown } from 
 import logo from "../images/logo.png";
 import wish from "../images/image.png";
 import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { myLoginContext } from "../loginContext";
+
+
 const TopMenu = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const ProductData= useSelector(state=>state.mycart.cart);
   const proLength= ProductData.length;
+  const {isLogedIn, setIsLogedIn} = useContext(myLoginContext);
+  const logout=()=>{
+    localStorage.clear();
+    setIsLogedIn(false);
+  }
+
   return (
     <Navbar bg="light" expand="lg" className="top-menu sm py-2 fixed=top">
       <Container>
@@ -41,9 +51,23 @@ const TopMenu = () => {
                 <FaUser size={20} className="cursor-pointer mt-1 " />
               </Nav.Link>
               <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/userlogin">Login</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/usersignup">Signup</Dropdown.Item>
-              </Dropdown.Menu>
+          {isLogedIn?(<>
+            <Dropdown.Item as={Link} to="/userlogin">
+                 Welcome {localStorage.getItem("username")}!
+                </Dropdown.Item>
+                <Dropdown.Item  onClick={logout}>
+                 Logout!
+                </Dropdown.Item>
+           </>) : (<> 
+            <Dropdown.Item as={Link} to="/userlogin">Login</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/usersignup">Signup</Dropdown.Item>
+          
+               
+          
+          </>)}     
+             
+
+                  </Dropdown.Menu>
             </Dropdown>
 
             <Nav.Link as={Link} to="/cart" className="d-flex align-items-center">
