@@ -6,6 +6,7 @@ const bodyParser=require('body-parser')
 const adminRoute= require("./routes/adminRoute");
 const productRoute= require("./routes/productRoute");
 const userRoute= require("./routes/userRoute");
+const paymentRoute=require("./routes/payment");
 const cors=require('cors')
 const db=require('./db') //used to connect the database with database file
 db();
@@ -23,6 +24,7 @@ app.use("/admin", adminRoute);
 app.use("/product",productRoute);
 app.use("/user", userRoute);
 
+app.use("/api/payment/",paymentRoute);
 
 
 const port=process.env.PORT

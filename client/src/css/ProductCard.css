@@ -61,6 +61,12 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  #mysummery
+  {
+    width: 500px;
+    margin: auto;
+  }
   
   .product-title {
     font-size: 16px;
