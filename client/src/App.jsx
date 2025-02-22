@@ -11,6 +11,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ProductInsert from "./pages/ProductInsert";
 import UpdateProduct from "./pages/UpdateProducts";
 import CheckOut from "./pages/CheckOut";
+import CustomerOrder from "./pages/CustomerOrder";
+import DisplayCustomer from "./pages/DisplayCustomers";
+import ShowProductDetail from "./pages/ShowProductDetail";
 const App = () => {
   return (
     <>
@@ -27,10 +30,13 @@ const App = () => {
             <Route path="userlogin" element={<UserLogin />} />
             <Route path="usersignup" element={<UserSIgnUp />} />
             <Route path="checkout" element={<CheckOut/>} />
+            <Route path="showfullproduct/:id" element={<ShowProductDetail/>}/>
           </Route>
           <Route path="admin" element={<AdminDashboard />} >
             <Route path="insert" element={<ProductInsert/>} />
             <Route path="updateproducts" element={<UpdateProduct/>}/>
+            <Route path="customerorders" element={<CustomerOrder/>}/>
+            <Route path="displaycustomer" element={<DisplayCustomer/>}/>
            </Route>
         </Routes>
       </BrowserRouter>

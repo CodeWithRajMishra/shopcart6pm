@@ -46,12 +46,13 @@ const Signup = () => {
             <div className="signup-box">
                 <h2 className="signup-title">Log In</h2>
                 <form className="signup-form">
-                    <input type="email" name="email" placeholder="Email" className="signup-input"
+                    <input type="email" name="email" placeholder="Email" 
+                    className="signup-input"
                     value={email} onChange={(e)=>{setEmail(e.target.value)}} />
                     <input type="password" name="password" placeholder="Password" className="signup-input" 
                     value={password} onChange={(e)=>{setPassword(e.target.value)}} />
 
-                        <select style={{width:"100px"}} name="userrole" value={userRole} 
+                        <select style={{width:"100px"}} name="userrole" className="signup-input" value={userRole} 
                         onChange={(e)=>{setUserRole(e.target.value)}}>
                            <option>Select Role</option>
                             <option value="user">User</option>

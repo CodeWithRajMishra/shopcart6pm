@@ -2,12 +2,24 @@
 const router = require("express").Router();
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
-
+const OrderModel= require("../models/customerorderModel");
 //Creating Order
 
 
 
 router.post("/orders",async(req,res) => {
+const {amount, customername, product, address, city, email, contact}=req.body;
+   await OrderModel.create({
+    customername:customername,
+    product:product,
+    amount:amount,
+    address:address,
+    city:city,
+    email:email, 
+    contact:contact
+   })
+
+
     try {
         const instance = new Razorpay({
             key_id: process.env.KEY_ID,
@@ -31,7 +43,6 @@ router.post("/orders",async(req,res) => {
         console.log(error);
         res.status(500).json({message:"Internal Server Error!"});
     }
-
 });
 
 //Verifying the payment
