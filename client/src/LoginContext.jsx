@@ -7,11 +7,9 @@ const LoginContext=({children})=>{
         <>
          <myLoginContext.Provider value={{isLogedIn, setIsLogedIn}}>
             {children}
-         </myLoginContext.Provider>
-                       
+         </myLoginContext.Provider>                      
         </>
     )
 }
-
 export default LoginContext;
 export  {myLoginContext};
