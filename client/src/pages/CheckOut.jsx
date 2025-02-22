@@ -86,6 +86,7 @@ const initPay = (data) => {
       try {
         const verifyURL = "https://localhost:8080/api/payment/verify";
         const {data} = await axios.post(verifyURL,response);
+       
       } catch(error) {
         console.log(error);
       }
@@ -104,7 +105,10 @@ const initPay = (data) => {
    const handlePay = async () => {
     try {
       const orderURL = "http://localhost:8080/api/payment/orders";
-      const {data} = await axios.post(orderURL,{amount: totalAmount});
+      const {data} = await axios.post(orderURL,{amount: totalAmount, 
+        customername:mydata.name, product:myProList, 
+        address:mydata.address, city:mydata.city, 
+        email:mydata.email, contact:mydata.contact  });
       console.log(data);
       initPay(data.data);
     } catch (error) {

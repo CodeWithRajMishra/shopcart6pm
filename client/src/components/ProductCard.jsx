@@ -6,12 +6,13 @@ import { PiCurrencyInrThin } from "react-icons/pi";
 import axios from "axios";
 import { addtoCart } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 
 
 const ProductCard = () => {
    const [mydata, setMydata]= useState([]);
    const dispatch = useDispatch();
+   const navigate = useNavigate();
    const loadData=async()=>{
     const api=`${BASE_URL}/product/homeproductdisplay`;
     try {
@@ -27,12 +28,18 @@ useEffect(()=>{
     loadData();
 }, [])
 
+const showFullProduct=(id)=>{
+     navigate(`/showfullproduct/${id}`)
+}
+
+
 const ans=mydata.map((key)=>{
             return(
                 <>
               <div className="product-card">
                     <div className="image-container">
-        <img src={`${BASE_URL}/${key.defaultImage}`} alt={key.name} className="product-image" />
+        <img src={`${BASE_URL}/${key.defaultImage}`} alt={key.name} className="product-image"
+        onClick={()=>{showFullProduct(key._id)}} />
                <FaRegHeart className="wishlist-icon" />
                     </div>
                     <div className="product-info">
@@ -44,6 +51,7 @@ const ans=mydata.map((key)=>{
                         </div>
                         <p className="product-description">{key.description}</p>
                         <div className="product-rating">
+                            <i>Ratings : </i> 
                             {[...Array(key.ratings)].map((_, index) => (
                                 <FaStar key={index} className="star-icon" />
                             ))}

@@ -1,5 +1,6 @@
 const ProductModel= require("../models/productModel");
-
+const CustomerorderModel = require("../models/customerorderModel");
+const CustomerModel= require("../models/userModel");
 
 const productSave=async(req, res)=>{  
     const imageUrls = req.files.map(file => file.path);
@@ -39,9 +40,22 @@ const productMakeNormal=async(req, res)=>{
     const Data= await ProductModel.findByIdAndUpdate(id, {status:"normal"} );
     res.status(201).send({msg:"Product Status Succesfully Changed!"});
 }
+
+const showCustomerOrder=async(req, res)=>{
+    const Order= await CustomerorderModel.find();
+    res.status(200).send(Order);
+}
+
+const displayAllCustomer=async(req, res)=>{
+       const Customer= await CustomerModel.find();
+       res.status(200).send(Customer);
+}
+
 module.exports={
     productSave,
     productDisplay,
     productMakePrimary,
-    productMakeNormal
+    productMakeNormal,
+    showCustomerOrder,
+    displayAllCustomer
 }

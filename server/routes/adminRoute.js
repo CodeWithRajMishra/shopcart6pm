@@ -50,6 +50,10 @@ route.post("/productsave",upload.array('files', 10), AdminController.productSave
 route.get("/productdisplay", AdminController.productDisplay);
 route.post("/productmakeprimary", AdminController.productMakePrimary);
 route.post("/productmakenormal", AdminController.productMakeNormal);
+route.get("/customerorder", AdminController.showCustomerOrder);
+route.get("/displayallcustome", AdminController.displayAllCustomer);
+
+
 
 
 
